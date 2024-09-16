@@ -15,12 +15,15 @@ import javax.validation.constraints.NotNull;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "ingredients")
 public class Ingredient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
     @NotNull
+    @Column(name = "category")
+    @Enumerated(EnumType.STRING)
     private IngredientCategory category;
 
     public Ingredient(IngredientDTO ingredient) {
