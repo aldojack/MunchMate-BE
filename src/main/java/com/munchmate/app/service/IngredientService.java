@@ -5,7 +5,6 @@ import com.munchmate.app.entity.Ingredient;
 import com.munchmate.app.repository.IngredientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 import java.util.Optional;
@@ -28,10 +27,16 @@ public class IngredientService {
     public IngredientDTO createIngredient(IngredientDTO ingredientDTO){
         //Maybe check if Ingredient exists first or name unique
         Ingredient newIngredient = new Ingredient(ingredientDTO);
-        System.out.println();
         Ingredient savedIngredient = this.ingredientRepository.save(newIngredient);
         return new IngredientDTO(savedIngredient);
     }
+
+    public IngredientDTO getIngredientByName(String name) {
+        Ingredient found = this.ingredientRepository.findByName(name);
+        return new IngredientDTO(found);
+    }
+
+
 
     public IngredientDTO deleteIngredientById(Integer id){
         //Implement exception

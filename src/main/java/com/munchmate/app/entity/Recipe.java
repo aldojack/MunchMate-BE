@@ -1,5 +1,6 @@
 package com.munchmate.app.entity;
 
+import com.munchmate.app.dto.RecipeDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,10 +23,10 @@ public class Recipe {
     private String title;
     // Ingredient List
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<RecipeIngredient> ingredients = new ArrayList<>();
+    private List<RecipeIngredient> ingredients;
     // Instructions
     @ElementCollection
-    private List<String> instructions = new ArrayList<>();
+    private List<String> instructions;
     // Source
     @ManyToOne
     @JoinColumn(name="source_id")
@@ -34,5 +35,17 @@ public class Recipe {
     private Integer cookTime;
     private Integer prepTime;
     private Integer servingSize;
+
+    public Recipe(RecipeDTO recipe){
+        this.title = recipe.getTitle();
+        //THis line might need to be investigated more
+        this.ingredients = recipe.getIngredients().stream().map(RecipeIngredient::new).toList();
+        this.instructions = recipe.getInstructions();
+        this.source = new Source( recipe.getSource());
+        this.image = recipe.getImage();
+        this.cookTime = recipe.getCookTime();
+        this.prepTime = recipe.getPrepTime();
+        this.servingSize = recipe.getServingSize();
+    }
 
 }

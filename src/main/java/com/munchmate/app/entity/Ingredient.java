@@ -27,6 +27,7 @@ public class Ingredient {
     private IngredientCategory category;
 
     public Ingredient(IngredientDTO ingredient) {
+        if(ingredient.getId() != null) this.id = ingredient.getId();
         this.name = ingredient.getName();
         this.category = ingredient.getCategory();
     }

@@ -22,6 +22,11 @@ public class IngredientController {
     public IngredientDTO getIngredientById(@PathVariable Integer id){
         return this.ingredientService.getIngredientById(id);
     }
+    @GetMapping("/byName/{name}")
+    public IngredientDTO getIngredientByName(@PathVariable String name){
+        String formattedName = name.replace("-", " ");
+        return this.ingredientService.getIngredientByName(formattedName);
+    }
     //Post Requests
     @PostMapping("/add")
     public IngredientDTO createIngredient(@RequestBody IngredientDTO ingredientDTO){
@@ -32,6 +37,7 @@ public class IngredientController {
     public IngredientDTO deleteIngredientById(@PathVariable Integer id){
         return this.ingredientService.deleteIngredientById(id);
     }
+
     //Patch Requests
 
 }
