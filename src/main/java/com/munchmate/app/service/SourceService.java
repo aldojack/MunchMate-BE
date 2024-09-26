@@ -36,7 +36,6 @@ public class SourceService {
 
         // Create the new source
         Source newSource = new Source(sourceDTO);
-//        Source savedSource = this.sourceRepository.save(newSource);
 
         return this.sourceRepository.save(newSource);
     }

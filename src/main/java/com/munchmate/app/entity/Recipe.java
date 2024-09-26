@@ -26,6 +26,8 @@ public class Recipe {
     private List<RecipeIngredient> ingredients;
     // Instructions
     @ElementCollection
+    @CollectionTable(name = "recipe_instructions", joinColumns = @JoinColumn(name = "recipe_id"))
+    @Column(length = 1000)  // This specifies the max length for each instruction
     private List<String> instructions;
     // Source
     @ManyToOne
