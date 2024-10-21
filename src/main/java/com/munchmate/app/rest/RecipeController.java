@@ -12,7 +12,7 @@ import java.util.List;
 public class RecipeController {
     @Autowired
     private RecipeService recipeService;
-
+    @GetMapping
     public List<RecipeDTO> getAllRecipes(){
         return this.recipeService.getAllRecipes();
     }

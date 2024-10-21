@@ -6,8 +6,10 @@ import com.munchmate.app.repository.IngredientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class IngredientService {
@@ -15,7 +17,12 @@ public class IngredientService {
     private IngredientRepository ingredientRepository;
 
     public List<Ingredient> getAllIngredients(){
-        return ingredientRepository.findAll();
+        return ingredientRepository.findAll().stream().sorted(Comparator.comparing(Ingredient::getName)).collect(Collectors.toList());
+//        List<Ingredient> ingredients = ingredientRepository.findAll();
+//        System.out.println(ingredients);
+//        ingredients.sort(Comparator.comparing(Ingredient::getName));
+//        return ingredients;
+
     }
 
     public IngredientDTO getIngredientById(Integer id){
