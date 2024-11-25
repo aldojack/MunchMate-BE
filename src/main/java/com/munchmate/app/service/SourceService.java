@@ -23,15 +23,18 @@ public class SourceService {
     }
 
     public Source createSource(SourceDTO sourceDTO){
-
-        Optional<Source> existingSourceByBook = findByBookAndPageNumber(sourceDTO.getBook(), sourceDTO.getPageNumber());
-        if (existingSourceByBook.isPresent()) {
-            throw new IllegalArgumentException("Source already exists with book: " + sourceDTO.getBook() + " and page number: " + sourceDTO.getPageNumber());
+        if(sourceDTO.getBook() != null){
+            Optional<Source> existingSourceByBook = findByBookAndPageNumber(sourceDTO.getBook(), sourceDTO.getPageNumber());
+            if (existingSourceByBook.isPresent()) {
+                throw new IllegalArgumentException("Source already exists with book: " + sourceDTO.getBook() + " and page number: " + sourceDTO.getPageNumber());
+            }
         }
-
+        if(sourceDTO.getUrl() != null){
         Optional<Source> existingSourceByUrl = findByUrl(sourceDTO.getUrl());
         if (existingSourceByUrl.isPresent()) {
             throw new IllegalArgumentException("Source already exists with URL: " + sourceDTO.getUrl());
+        }
+
         }
 
         // Create the new source
