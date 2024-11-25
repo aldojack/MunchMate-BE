@@ -1,6 +1,7 @@
 package com.munchmate.app.entity;
 
 import com.munchmate.app.dto.RecipeDTO;
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -33,6 +34,7 @@ public class Recipe {
     @ManyToOne
     @JoinColumn(name="source_id")
     private Source source;
+    @Nullable
     private String image;
     private Integer cookTime;
     private Integer prepTime;
