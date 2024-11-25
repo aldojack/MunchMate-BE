@@ -13,6 +13,7 @@ public enum Unit {
     POUND("lb"),
     OUNCE("oz"),
     MILLILITER("ml"),
+    CLOVE("clove"),
     LITER("l"),
     CUP("cup"),
     WHOLE("whole"),
