@@ -15,7 +15,7 @@ public class IngredientController {
     private IngredientService ingredientService;
     //Get Requests
     @GetMapping
-    public List<Ingredient> getAllIngredients(){
+    public List<IngredientDTO> getAllIngredients(){
         return this.ingredientService.getAllIngredients();
     }
     @GetMapping("/{id}")

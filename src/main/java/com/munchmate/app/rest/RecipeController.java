@@ -26,4 +26,9 @@ public class RecipeController {
         System.out.println("Parameter"+  recipeDTO);
         return this.recipeService.createRecipe(recipeDTO);
     }
+
+    @DeleteMapping("/{id}")
+    public void deleteRecipe(@PathVariable Integer id) {
+        this.recipeService.deleteRecipe(id);
+    }
 }

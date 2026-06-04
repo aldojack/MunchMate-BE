@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -16,8 +15,10 @@ public class IngredientService {
     @Autowired
     private IngredientRepository ingredientRepository;
 
-    public List<Ingredient> getAllIngredients(){
-        return ingredientRepository.findAll().stream().sorted(Comparator.comparing(Ingredient::getName)).collect(Collectors.toList());
+    public List<IngredientDTO> getAllIngredients(){
+        return ingredientRepository.findAll().stream().map(IngredientDTO::new).toList();
+//        return ingredientRepository.findAll().stream().sorted(Comparator.comparing(Ingredient::getName)).collect(Collectors.toList());
+
 //        List<Ingredient> ingredients = ingredientRepository.findAll();
 //        System.out.println(ingredients);
 //        ingredients.sort(Comparator.comparing(Ingredient::getName));
